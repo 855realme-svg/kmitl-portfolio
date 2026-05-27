@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0a1628;
+    --navy2: #112240;
+    --gold: #c9a227;
+    --gold-light: #f0c94d;
+    --white: #ffffff;
+    --gray: #8892a4;
+    --light: #e8ecf1;
+    --accent: #1a73e8;
+  }
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0a1628 0%, #112240 60%, #0d1f3c 100%);
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border: 40px solid rgba(201,162,39,0.08);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 20%;
+    width: 200px; height: 200px;
+    border: 30px solid rgba(201,162,39,0.05);
+    border-radius: 50%;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(201,162,39,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-family: 'Kanit', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .hero-name span { color: var(--gold); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  .hero-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--light);
+  }
+  .info-icon {
+    width: 28px; height: 28px;
+    background: rgba(201,162,39,0.15);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .hero-desc {
+    font-size: 15px;
+    color: #a8b4c4;
+    line-height: 1.8;
+    max-width: 560px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,162,39,0.05);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 40px 40px 10px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,162,39,0.3);
+  }
+  .title-num {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Sarabun', sans-serif;
+    opacity: 0.8;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .skill-card {
+    background: var(--navy2);
+    border: 1px solid rgba(201,162,39,0.2);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--gold); }
+  .skill-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .skill-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 12px;
+    background: rgba(201,162,39,0.1);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,162,39,0.25);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .project-card {
+    background: var(--navy2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover {
+    border-color: rgba(201,162,39,0.4);
+    transform: translateY(-2px);
+  }
+  .project-top {
+    padding: 20px 20px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .project-num {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .project-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .project-bottom {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .project-type {
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(26,115,232,0.1);
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(26,115,232,0.2);
+  }
+  .edit-hint {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ACTIVITIES */
+  .activity-list {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .activity-item {
+    background: var(--navy2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .activity-year {
+    min-width: 50px;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .activity-text { font-size: 14px; color: var(--light); line-height: 1.6; }
+  .activity-role { font-size: 12px; color: var(--gray); margin-top: 3px; }
+
+  /* AWARDS */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .award-card {
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid rgba(201,162,39,0.25);
+    background: rgba(201,162,39,0.06);
+    position: relative;
+  }
+  .award-medal { font-size: 24px; margin-bottom: 8px; }
+  .award-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .award-detail { font-size: 12px; color: var(--gray); }
+
+  /* CONTACT */
+  .contact-section {
+    margin: 0 40px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(201,162,39,0.08), rgba(201,162,39,0.03));
+    border: 1px solid rgba(201,162,39,0.3);
+    border-radius: 16px;
+    margin-bottom: 40px;
+  }
+  .contact-title {
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--light);
+  }
+  .c-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(201,162,39,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  /* NOTE BOX */
+  .note-box {
+    margin: 0 40px 30px;
+    padding: 14px 20px;
+    background: rgba(26,115,232,0.08);
+    border: 1px solid rgba(26,115,232,0.2);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #90b8f0;
+    line-height: 1.7;
+  }
+  .note-box strong { color: #b0ccf5; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">⚡ KMITL · คณะวิศวกรรมศาสตร์</div>
+  <div class="hero-name">ธรรมคุณ <span>คิดการ</span></div>
+  <div class="hero-sub">ผู้สมัครสาขาวิศวกรรมไฟฟ้า · สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</div>
+  <div class="hero-info">
+    <div class="info-item">
+      <div class="info-icon">🏫</div>
+      <div>โรงเรียนโชคชัยสามัคคี / แผน วิทย์-คณิต</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>จังหวัดนครราชสีมา</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📅</div>
+      <div>ปีการศึกษา 2569</div>
+    </div>
+  </div>
+  <div class="hero-desc">
+    ผมเป็นนักเรียนที่มีความหลงใหลในด้านวิศวกรรมไฟฟ้าและระบบพลังงาน มีความสนใจในการพัฒนาระบบอัตโนมัติและเทคโนโลยีพลังงานสะอาด มุ่งมั่นที่จะนำความรู้มาแก้ไขปัญหาจริงในสังคม
+    <br><br>
+    <em style="font-size:12px; color: rgba(201,162,39,0.7);">✏️ </em>
+  </div>
+</div>
+
+
+<!-- SKILLS -->
+<div class="section">
+  <div class="section-title"><span class="title-num">01</span> ทักษะและความสามารถ</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-title">วงจรไฟฟ้าและอิเล็กทรอนิกส์</div>
+      <div class="skill-tags">
+        <span class="tag">วงจร AC/DC</span>
+        <span class="tag">ออสซิลโลสโคป</span>
+        <span class="tag">Arduino</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💻</div>
+      <div class="skill-title">โปรแกรมมิ่ง</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-title">การออกแบบและจำลอง</div>
+      <div class="skill-tags">
+        <span class="tag">Proteus</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">LTspice</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-title">ภาษา</div>
+      <div class="skill-tags">
+        <span class="tag">ภาษาไทย (เจ้าของภาษา)</span>
+        <span class="tag">อังกฤษ [ระดับ]</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section">
+  <div class="section-title"><span class="title-num">02</span> ผลงานและโปรเจกต์</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">PROJECT 01</div>
+        <div class="project-name">Smart room monitor</div>
+        <div class="project-desc">วัดอุณหภูมิ ความชื้น แล้วส่งขึ้นเว็บผ่าน Wi-Fi
+ใช้ DHT11 + OLED</div>
+      </div>
+      <div class="project-bottom">
+        <span class="project-type">Hardware / IoT</span>
+       
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">PROJECT 02</div>
+        <div class="project-name">Music visualizer</div>
+        <div class="project-desc">ไฟเต้นตามเพลง</div>
+      </div>
+      <div class="project-bottom">
+        <span class="project-type">Software / AI</span>
+        
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">PROJECT 03</div>
+        <div class="project-name"AI Vision Turret</div>
+        <div class="project-desc">กล้อง AI ตรวจจับคน/วัตถุ แล้วหมุนตามอัตโนมัติ</div>
+      </div>
+      <div class="project-bottom">
+        <span class="project-type">Energy / Renewable</span>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITIES -->
+<div class="section">
+  <div class="section-title"><span class="title-num">03</span> กิจกรรมและประสบการณ์</div>
+  <div class="activity-list">
+    <div class="activity-item">
+      <div class="activity-year">256X</div>
+      <div>
+        <div class="activity-text">[ชื่อกิจกรรม/ค่าย เช่น ค่ายวิศวกรรมไฟฟ้า KMITL Open House]</div>
+        <div class="activity-role">[บทบาท / สิ่งที่ได้รับ] ✏️</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-year">256X</div>
+      <div>
+        <div class="activity-text">[ชื่อกิจกรรม เช่น อาสาสมัครซ่อมไฟฟ้าชุมชน]</div>
+        <div class="activity-role">[บทบาท / สิ่งที่ได้รับ] ✏️</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-year">256X</div>
+      <div>
+        <div class="activity-text">[ชื่อกิจกรรม เช่น ชมรมหุ่นยนต์โรงเรียน / ประธานชมรม]</div>
+        <div class="activity-role">[บทบาท / สิ่งที่ได้รับ] ✏️</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div class="section">
+  <div class="section-title"><span class="title-num">04</span> รางวัลและเกียรติประวัติ</div>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-medal">🥇</div>
+      <div class="award-name">[ชื่อรางวัล เช่น รางวัลชนะเลิศ Science Fair]</div>
+      <div class="award-detail">[ระดับ/หน่วยงาน] · [ปี] ✏️</div>
+    </div>
+    <div class="award-card">
+      <div class="award-medal">🏆</div>
+      <div class="award-name">[ชื่อรางวัล เช่น เหรียญทองแข่งขันคณิตศาสตร์]</div>
+      <div class="award-detail">[ระดับ/หน่วยงาน] · [ปี] ✏️</div>
+    </div>
+    <div class="award-card">
+      <div class="award-medal">📜</div>
+      <div class="award-name">[ชื่อใบรับรอง เช่น NETSAT หรือ SAT Score]</div>
+      <div class="award-detail">คะแนน [XX] · [ปี] ✏️</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="contact-title">📬 ข้อมูลติดต่อ</div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="c-icon">📧</div>
+      <div>[อีเมล]855relame@gmail.com ✏️</div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">📱</div>
+      <div>0643601125 ✏️</div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">🔗</div>
+      <div>GitHub: [username] ✏️</div>
+    </div>
+    <div class="contact-item">
+      <div class="c-icon">📍</div>
+      <div>[จังหวัด], นครราชสีมา ✏️</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
